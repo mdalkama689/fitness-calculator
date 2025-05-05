@@ -272,7 +272,9 @@ export default function Mobile() {
 }
 const ShareComponent = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const whatsappMessage = encodeURIComponent("https://fitness-calculator-iota.vercel.app/");
+  const whatsappMessage = encodeURIComponent(
+    "https://fitness-calculator-iota.vercel.app/"
+  );
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -287,7 +289,7 @@ const ShareComponent = () => {
               isClicked ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
           >
-            <a
+            <Link
               href={`https://wa.me/?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -295,10 +297,12 @@ const ShareComponent = () => {
             >
               <IoLogoWhatsapp size={20} className="mr-2" />
               Share this on WhatsApp
-            </a>
+            </Link>
 
             <Link
-              href="/"
+              href="https://www.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center bg-blue-600 text-white hover:bg-blue-700 rounded-md p-2 mt-1 transition-colors duration-300"
             >
               <FaPlusCircle size={20} className="mr-2" />
