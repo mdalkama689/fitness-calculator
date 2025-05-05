@@ -14,6 +14,9 @@ import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GrPowerReset } from "react-icons/gr";
+import { IoIosInformationCircle, IoLogoWhatsapp } from "react-icons/io";
+import Link from "next/link";
+import { FaPlusCircle } from "react-icons/fa";
 
 export default function Tab() {
   const weightArr = Array.from({ length: 111 }, (_, i) => 40 + i);
@@ -53,7 +56,6 @@ export default function Tab() {
     const heightInM = height / 100;
     const bmi = weight / (heightInM * heightInM);
 
-
     const bmr =
       gender === "male"
         ? 10 * weight + 6.25 * height - 5 * age + 5
@@ -66,7 +68,6 @@ export default function Tab() {
       gender === "male"
         ? 50 + 0.91 * (height - 152.4)
         : 45.5 + 0.91 * (height - 152.4);
-
 
     const maxHR = 220 - age;
     const resting = restingHR || 70;
@@ -96,7 +97,9 @@ export default function Tab() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-6 px-4 flex items-center justify-center">
+    <div className="min-h-screen bg-black text-white py-6 px-4 flex items-center justify-center relative">
+      <ShareComponent />
+
       <Card className="w-full max-w-md md:max-w-lg bg-zinc-900 border border-zinc-700 shadow-xl rounded-2xl">
         <CardHeader className="pb-2 text-center">
           <CardTitle className="text-xl font-bold text-white">
@@ -241,14 +244,75 @@ export default function Tab() {
           <p className="text-xl font-semibold text-blue-400">
             Your Fitness Details
           </p>
-          <p>BMI: <span className="text-blue-400">{result.bmi}</span></p>
-          <p>Ideal Body Weight: <span className="text-blue-400">{result.idealWeight} kg</span></p>
-          <p>BMR: <span className="text-blue-400">{result.bmr} kcal/day</span></p>
-          <p>Caloric Needs: <span className="text-blue-400">{result.caloricNeeds} kcal/day</span></p>
-          <p>Target Heart Rate Zone: <span className="text-blue-400">{result.targetHRMin}–{result.targetHRMax} bpm</span></p>
+          <p>
+            BMI: <span className="text-blue-400">{result.bmi}</span>
+          </p>
+          <p>
+            Ideal Body Weight:{" "}
+            <span className="text-blue-400">{result.idealWeight} kg</span>
+          </p>
+          <p>
+            BMR: <span className="text-blue-400">{result.bmr} kcal/day</span>
+          </p>
+          <p>
+            Caloric Needs:{" "}
+            <span className="text-blue-400">
+              {result.caloricNeeds} kcal/day
+            </span>
+          </p>
+          <p>
+            Target Heart Rate Zone:{" "}
+            <span className="text-blue-400">
+              {result.targetHRMin}–{result.targetHRMax} bpm
+            </span>
+          </p>
         </div>
       )}
     </div>
   );
 }
 
+const ShareComponent = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const whatsappMessage = encodeURIComponent("https://google.com");
+
+  return (
+    <div className="fixed bottom-20 right-4 z-10">
+    <div
+      className="relative group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div
+        className={`absolute bottom-0 right-0 w-[300px] px-4 pb-1 shadow-lg transition-opacity duration-300 ease-in-out ${
+          isHovered ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <Link
+          href={`https://wa.me/?text=${whatsappMessage}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-green-600 text-white hover:bg-green-700 rounded-md p-2 transition-colors duration-300"
+        >
+          <IoLogoWhatsapp size={20} className="mr-2" />
+          Share this on WhatsApp
+        </Link>
+  
+        <Link
+          href="/"
+          className="flex items-center bg-blue-600 text-white hover:bg-blue-700 rounded-md p-2 mt-1 transition-colors duration-300"
+        >
+          <FaPlusCircle size={20} className="mr-2" />
+          Add this tool to your website
+        </Link>
+      </div>
+  
+      <IoIosInformationCircle
+        size={48}
+        className="cursor-pointer absolute right-0 transition-transform duration-300 transform hover:scale-110"
+      />
+    </div>
+  </div>
+  
+  );
+};
