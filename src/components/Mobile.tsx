@@ -14,9 +14,10 @@ import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GrPowerReset } from "react-icons/gr";
-import { IoIosInformationCircleOutline, IoLogoWhatsapp } from "react-icons/io";
+import { IoLogoWhatsapp } from "react-icons/io";
 import Link from "next/link";
 import { FaPlusCircle } from "react-icons/fa";
+import { MdOutlineInfo } from "react-icons/md";
 
 export default function Mobile() {
   const weightArr = Array.from({ length: 111 }, (_, i) => 40 + i);
@@ -310,7 +311,7 @@ const ShareComponent = () => {
             </Link>
           </div>
 
-          <IoIosInformationCircleOutline
+          <MdOutlineInfo
             size={48}
             onClick={handleClick}
             className="cursor-pointer absolute right-0 transition-transform duration-300 transform hover:scale-110"

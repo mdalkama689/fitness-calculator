@@ -14,9 +14,10 @@ import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GrPowerReset } from "react-icons/gr";
-import { IoIosInformationCircle, IoLogoWhatsapp } from "react-icons/io";
+import { IoLogoWhatsapp } from "react-icons/io";
 import Link from "next/link";
 import { FaPlusCircle } from "react-icons/fa";
+import { MdOutlineInfo } from "react-icons/md";
 
 export default function Tab() {
   const weightArr = Array.from({ length: 111 }, (_, i) => 40 + i);
@@ -311,7 +312,7 @@ const ShareComponent = () => {
           </Link>
         </div>
 
-        <IoIosInformationCircle
+        <MdOutlineInfo
           size={48}
           className="cursor-pointer absolute right-0 transition-transform duration-300 transform hover:scale-110"
         />
