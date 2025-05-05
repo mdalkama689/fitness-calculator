@@ -274,7 +274,7 @@ export default function Tab() {
 
 const ShareComponent = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const whatsappMessage = encodeURIComponent("https://google.com");
+  const whatsappMessage = encodeURIComponent("https://fitness-calculator-iota.vercel.app/");
 
   return (
     <div className="fixed bottom-20 right-4 z-10">

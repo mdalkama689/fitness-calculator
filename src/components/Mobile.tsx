@@ -272,7 +272,7 @@ export default function Mobile() {
 }
 const ShareComponent = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const whatsappMessage = encodeURIComponent("https://google.com");
+  const whatsappMessage = encodeURIComponent("https://fitness-calculator-iota.vercel.app/");
 
   const handleClick = () => {
     setIsClicked(!isClicked);
