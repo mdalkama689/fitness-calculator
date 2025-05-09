@@ -14,10 +14,6 @@ import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GrPowerReset } from "react-icons/gr";
-import { IoLogoWhatsapp } from "react-icons/io";
-import Link from "next/link";
-import { FaPlusCircle } from "react-icons/fa";
-import { MdOutlineInfo } from "react-icons/md";
 
 export default function Tab() {
   const weightArr = Array.from({ length: 111 }, (_, i) => 40 + i);
@@ -99,8 +95,6 @@ export default function Tab() {
 
   return (
     <div className="min-h-screen bg-black text-white py-6 px-4 flex items-center justify-center relative">
-      <ShareComponent />
-
       <Card className="w-full max-w-md md:max-w-lg bg-zinc-900 border border-zinc-700 shadow-xl rounded-2xl">
         <CardHeader className="pb-2 text-center">
           <CardTitle className="text-xl font-bold text-white">
@@ -272,51 +266,3 @@ export default function Tab() {
     </div>
   );
 }
-
-const ShareComponent = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const whatsappMessage = encodeURIComponent(
-    "https://fitness-calculator-iota.vercel.app/"
-  );
-
-  return (
-    <div className="fixed bottom-20 right-4 z-10">
-      <div
-        className="relative group"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div
-          className={`absolute bottom-0 right-0 w-[300px] px-4 pb-1 shadow-lg transition-opacity duration-300 ease-in-out ${
-            isHovered ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
-          <Link
-            href={`https://wa.me/?text=${whatsappMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center bg-green-600 text-white hover:bg-green-700 rounded-md p-2 transition-colors duration-300"
-          >
-            <IoLogoWhatsapp size={20} className="mr-2" />
-            Share this on WhatsApp
-          </Link>
-
-          <Link
-            href="https://www.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center bg-blue-600 text-white hover:bg-blue-700 rounded-md p-2 mt-1 transition-colors duration-300"
-          >
-            <FaPlusCircle size={20} className="mr-2" />
-            Add this tool to your website
-          </Link>
-        </div>
-
-        <MdOutlineInfo
-          size={48}
-          className="cursor-pointer absolute right-0 transition-transform duration-300 transform hover:scale-110"
-        />
-      </div>
-    </div>
-  );
-};
